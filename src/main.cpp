@@ -1,5 +1,10 @@
+#ifdef ARDUINO_ARCH_ESP32
 #include <WiFi.h>
 #include <HTTPClient.h>
+#elif defined(ARDUINO_ARCH_ESP8266)
+#include <ESP8266WiFi.h>
+#include <ESP8266HTTPClient.h>
+#endif
 #include <ArduinoJson.h>
 
 // WiFi credentials
@@ -28,7 +33,12 @@ void foxPobierzDane()
   String url = serverUrl + apiKey + "/get_current_parameters";
 
   HTTPClient http;
+#ifdef ARDUINO_ARCH_ESP32
   http.begin(url);
+#elif defined(ARDUINO_ARCH_ESP8266)
+  WiFiClient client;
+  http.begin(client, url);
+#endif
 
   int httpCode = http.GET();
 
@@ -78,6 +88,9 @@ void foxPobierzDane()
   }
 
   http.end();
+#ifdef ARDUINO_ARCH_ESP8266
+  client.stop();
+#endif
 }
 
 void setup()
