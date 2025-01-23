@@ -1,4 +1,3 @@
-#if defined(ARDUINO_ARCH_ESP32) || defined(ARDUINO_ARCH_ESP8266)
 #ifdef ARDUINO_ARCH_ESP32
 #include <WiFi.h>
 #include <HTTPClient.h>
