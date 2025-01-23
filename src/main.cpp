@@ -2,13 +2,15 @@
 #include <HTTPClient.h>
 #include <ArduinoJson.h>
 
+#include <secrets.h>
+
 // WiFi credentials
-const char *ssid = "";
-const char *password = "";
+const char *ssid = WIFI_SSID;
+const char *password = WIFI_PASSWORD;
 
 // API details
-const String apiKey = "0000";
-const String serverUrl = "IP";
+const String apiKey = ENERGY3_API_KEY;
+const String serverUrl = ENERGY3_IP;
 
 float napiecie[3];
 float prad[3];
